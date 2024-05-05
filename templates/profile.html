@@ -1,0 +1,113 @@
+{% extends 'base.html' %} {% block content %}
+<main class="content">
+  <section class="navigation">
+    <section class="navigation__side">
+      <div class="navigation__profile-item navigation__item">
+        <h2 class="navigation__profile-header">Profile</h2>
+        <img
+          src="{{ url_for('static', filename='images/profile_img.png') }}"
+          alt="user_img"
+          class="navigation__profile-img"
+        />
+        <h2 class="navigation__profile-fullname">{{ username }}</h2>
+        <a href="{{ url_for('logout') }}" class="navigation__logout">LogOut</a>
+      </div>
+      <div class="navigation__contact-item navigation__item">
+        <img
+          src="{{ url_for('static', filename='images/support_img.png') }}"
+          alt="contact_img"
+          class="navigation__contact-img"
+        />
+        <p class="navigation__contact-text">
+          if you have any kind of questions<br />we will help you here
+        </p>
+        <a href="#" class="navigation__contact-button">contacts</a>
+      </div>
+    </section>
+    <section class="navigation__side">
+      <div class="navigation__progress-item">
+        <div class="navigation__progress-text">
+          <h2 class="navigation__progress-header">Courses you are taking</h2>
+          <p class="navigation__progress-desc">
+            Statistics of purchased courses will be displayed here<br />in
+            relation to available ones
+          </p>
+        </div>
+        <div class="navigation__progress-statistics">
+          <img
+            class="navigation__progress-img"
+            src="{{ url_for('static', filename='images/percents-stat.png') }}"
+            alt="statistics-img"
+          />
+          <h3 class="navigation__progress-percents">
+            {{ bought_percentage }}%
+          </h3>
+        </div>
+      </div>
+      <div class="navigation__mybio">
+        <div class="navigation__mybio-categories">
+          <p class="navigation__mybio-categories-mybio">My Bio</p>
+        </div>
+        <div class="navigation__mybio-item navigation__item">
+          <form class="navigation__mybio-info" method="post">
+            <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
+            <div class="navigation__mybio-info-side">
+              <div class="profile-field profile-item">
+                <label for="nickname">your nickname</label>
+                <input
+                  type="text"
+                  id="nickname"
+                  placeholder="Barbara Mingan"
+                  value="{{ username }}"
+                  name="username"
+                />
+              </div>
+              <div class="profile-field profile-item">
+                <label for="email">your email</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="mybox@mail.com"
+                  value="{{ mail }}"
+                  name="mail"
+                />
+              </div>
+            </div>
+            <div class="navigation__mybio-info-side">
+              <div class="profile-field profile-item">
+                <label for="password">your password</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Enter new password"
+                  name="password"
+                />
+              </div>
+              <button
+                class="profile-button profile-field profile-save-btn"
+                type="submit"
+              >
+                Save
+              </button>
+              <!-- <a
+                href="#"
+                class="navigation__mybio-info-courses profile-item"
+              >
+                your courses
+                <p class="navigation__mybio-info-countofcourses">5</p>
+              </a> -->
+            </div>
+          </form>
+          {% with messages = get_flashed_messages() %} {% if messages %}
+          <div class="profile__notification">
+            {% for message in messages %}
+            <p class="profile__notification-message">{{ message }}</p>
+            {% endfor %}
+          </div>
+          {% endif %} {% endwith %}
+        </div>
+      </div>
+    </section>
+  </section>
+</main>
+{% endblock content %}

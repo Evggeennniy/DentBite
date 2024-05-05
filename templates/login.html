@@ -1,0 +1,44 @@
+<!-- prettier-ignore -->
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<section class="login">
+  <div class="login__side">
+    <form method="post" class="login__form">
+      <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
+      <h2 class="login__header">Please enter in your account</h2>
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <div class="login__notification">
+        {% for message in messages %}
+        <p class="login__notification-message">{{ message }}</p>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+      <div class="login__field">
+        <label for="username" class="login__label">Username</label>
+        <input type="text" class="login__input" name="username" />
+      </div>
+      <div class="login__field">
+        <label for="password" class="login__label">Password</label>
+        <input
+          type="password"
+          class="login__input input-password"
+          name="password"
+        />
+      </div>
+      <label>
+        <input type="checkbox" class="show_password_button" />
+        Show / cover password
+      </label>
+      <div class="login__buttons">
+        <input class="login__enter-button" type="submit" value="Login" />
+        <a class="login__registr-button" href="{{ url_for('registration') }}"
+          >SingUp</a
+        >
+      </div>
+    </form>
+  </div>
+</section>
+
+{% endblock content %}

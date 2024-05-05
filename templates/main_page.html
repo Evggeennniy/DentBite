@@ -1,0 +1,152 @@
+{% extends 'base.html' %} {% block content %}
+<main class="content">
+  <section class="intro">
+    <div class="intro__text">
+      <p class="intro__header-sml">We will help you to start!</p>
+      <h1 class="intro__header-big">Online Dental<br />Course Academy</h1>
+      <a href="{{ url_for('courses') }}" class="intro__button">Courses</a>
+    </div>
+    <div class="intro__picture">
+      <img
+        class="picture__img"
+        src="{{ url_for('static', filename='images/intro-img.png') }}"
+        alt="img" />
+    </div>
+    <div class="backborder"></div>
+  </section>
+  <section class="features">
+    <ul class="features__list">
+      <li class="features__list-item">
+        <h3 class="features__step-number">1</h3>
+        <h4 class="features__step-header">Our courses</h4>
+        <p class="features__step-description">
+          will help you prepare for<br />your future dentist exam
+        </p>
+      </li>
+      <li class="features__list-item">
+        <h3 class="features__step-number">2</h3>
+        <h4 class="features__step-header">Lectures, books</h4>
+        <p class="features__step-description">
+          material that cannot be<br />found in the public domain
+        </p>
+      </li>
+      <li class="features__list-item">
+        <h3 class="features__step-number">3</h3>
+        <h4 class="features__step-header">Purchasing our online</h4>
+        <p class="features__step-description">
+          is a quick and<br />quality investment in your<br />career
+        </p>
+      </li>
+    </ul>
+  </section>
+  <section class="courses">
+    <div class="courses__block">
+      <h1 class="courses__header">adat</h1>
+      <h1 class="courses__header">adat+afk</h1>
+      <h1 class="courses__header">dat</h1>
+    </div>
+    <div class="courses__introduction">
+      <h2 class="courses__intro-header">
+        Welcome to Dent Bite Bright<br />Academy!
+      </h2>
+      <p class="courses__intro-desc">
+        Our comprehensive online course designed to prepare you for success in
+        dental<br />admissions tests such as the ADAT, AFK, and DAT. Our
+        curriculum is meticulously crafted<br />by experienced dental
+        professionals and test preparation experts, ensuring that you<br />
+        receive the most relevant and up-to-date content.
+      </p>
+      <p class="courses-intro-notice">
+        From foundational concepts to advanced topics, each<br />module is
+        structured to cover key areas assessed in these<br />critical exams.
+      </p>
+    </div>
+    <div class="courses__purpose">
+      <img
+        class="courses__purpose-img"
+        src="{{ url_for('static', filename='images/purpose_img.png') }}" />
+      <h2 class="courses__purpose-header">Book a course<br />with us</h2>
+    </div>
+    <ul class="courses__list">
+      {% for course in courses %}
+      <li class="courses__item">
+        <div class="courses__item-maininfo">
+          <div>
+            <img
+              src="{{ url_for('static', filename='images/afk_course.png') }}"
+              alt="logo"
+              class="courses__item-img" />
+          </div>
+          <div class="courses__item-info">
+            <h1 class="courses__item-header">{{ course.name }}</h1>
+            <p class="courses__item-desc">{{ course.description }}</p>
+            <div class="courses__item-navigation">
+              <a href="#" class="courses__item-link">
+                <img
+                  src="{{ url_for('static', filename='images/order_img.png') }}"
+                  alt="buy"
+                  class="courses__item-link__img" />
+              </a>
+              <a href="#" class="courses__item-link">
+                <p class="courses__item-more">MORE</p>
+                <div class="stick"></div>
+                <div class="stick"></div>
+                <div class="stick"></div>
+              </a>
+              <p class="courses__item-price">{{ course.price }}$</p>
+            </div>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  <section class="adventages">
+    <div class="adventages__item">
+      <div class="adventages__img-wrapper">
+        <img
+          src="{{ url_for('static', filename='images/adventage_1.png') }}"
+          alt="adv_icon"
+          class="adventages__img" />
+      </div>
+      <p class="adventages__header">High-quality<br>lectures</p>
+    </div>
+    <div class="adventages__item">
+      <div class="adventages__img-wrapper">
+        <img
+          src="{{ url_for('static', filename='images/adventage_2.png') }}"
+          alt="adv_icon"
+          class="adventages__img" />
+      </div>
+      <p class="adventages__header">Only 450$ for<br>DAT monthly</p>
+    </div>
+    <div class="adventages__item">
+      <div class="adventages__img-wrapper">
+        <img
+          src="{{ url_for('static', filename='images/adventage_3.png') }}"
+          alt="adv_icon"
+          class="adventages__img" />
+      </div>
+      <p class="adventages__header">Cheaper then<br>other</p>
+    </div>
+    <div class="adventages__item">
+      <div class="adventages__img-wrapper">
+        <img
+          src="{{ url_for('static', filename='images/adventage_4.png') }}"
+          alt="adv_icon"
+          class="adventages__img" />
+      </div>
+      <p class="adventages__header">Mocks exams</p>
+    </div>
+    <div class="adventages__item">
+      <div class="adventages__img-wrapper">
+        <img
+          src="{{ url_for('static', filename='images/adventage_5.png') }}"
+          alt="adv_icon"
+          class="adventages__img" />
+      </div>
+      <p class="adventages__header">Discussion of<br>issues material</p>
+    </div>
+  </section>
+</main>
+{% endblock content %}

@@ -1,0 +1,7 @@
+# Server
+flask
+flask-admin
+SQLAlchemy
+flask_sqlalchemy
+Flask-Login
+Flask-WTF

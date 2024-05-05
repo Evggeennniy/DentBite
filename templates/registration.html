@@ -1,0 +1,64 @@
+<!-- prettier-ignore -->
+{% extends 'base.html' %} 
+{% block content %}
+
+<section class="registration">
+  <div class="registration__side">
+    <h2 class="registration__header">
+      <span class="registration__header-bold"
+        >Registration is easier than<br />you think! </span
+      >A couple of<br />moves and you are part of<br />the dento family
+    </h2>
+  </div>
+  <div class="registration__side">
+    <form method="post" class="registration__form">
+      <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
+      <h2 class="registration__header">Create your account</h2>
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <div class="login__notification">
+        {% for message in messages %}
+        <p class="login__notification-message">{{ message }}</p>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+      <div class="registration__field">
+        <label for="username">Username</label>
+        <input type="text" class="registration__input" name="username" />
+      </div>
+      <div class="registration__field">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="registration__input input-password"
+          name="password"
+        />
+      </div>
+      <div class="registration__field">
+        <label for="confirm_password">Confirm password</label>
+        <input
+          type="password"
+          class="registration__input input-password"
+          name="confirm_password"
+        />
+      </div>
+      <label>
+        <input type="checkbox" class="show_password_button" />
+        Show / cover password
+      </label>
+      <div class="registration__buttons">
+        <input
+          class="registration__enter-button"
+          type="submit"
+          value="SingUp"
+        />
+        <a class="login__registr-button" href="{{ url_for('login') }}">Login</a>
+      </div>
+      <div class="registration__rules-warning">
+        <p class="registration__rules-warning__text">
+          By clicking Sign up, you agree to the terms of use.
+        </p>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock content %}

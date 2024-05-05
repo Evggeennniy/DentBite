@@ -1,0 +1,136 @@
+{% extends 'base.html' %} {% block content %}
+
+<section class="about_courses">
+  <div class="about_courses__adversments">
+    <div class="about_courses__item">
+      <div class="about_courses__img_wrapper">
+        <img
+          src="{{ url_for('static', filename='images/about_courses-img1.png') }}"
+          alt="icon"
+          class="about_courses__img"
+        />
+      </div>
+      <h3 class="about_courses__item-header-md">Сonstant updates</h3>
+    </div>
+    <div class="about_courses__stick">
+      <div></div>
+    </div>
+    <div class="about_courses__item">
+      <div class="about_courses__img_wrapper">
+        <img
+          src="{{ url_for('static', filename='images/about_courses-img2.png') }}"
+          alt="icon"
+          class="about_courses__img"
+        />
+      </div>
+      <h3 class="about_courses__item-header-md">Help chat 24/7</h3>
+    </div>
+    <div class="about_courses__stick">
+      <div></div>
+    </div>
+    <div class="about_courses__item">
+      <div class="about_courses__img_wrapper">
+        <img
+          src="{{ url_for('static', filename='images/about_courses-img3.png') }}"
+          alt="icon"
+          class="about_courses__img"
+        />
+      </div>
+      <h3 class="about_courses__item-header-md">Training</h3>
+    </div>
+  </div>
+  <div class="about_courses__text">
+    <h3 class="about_courses__header-md">№1 Dent Bite Bright Academy</h3>
+    <h2 class="about_courses__header-bg">
+      Courses to improve your qualifications.
+    </h2>
+    <p class="about_courses__description">
+      Courses that will take you to a new level of qualifications.
+    </p>
+    <div class="about_courses__timeline">
+      <div class="about_courses__timeline-item">
+        <h1 class="about_courses__timeline-num">30</h1>
+        <p class="about_courses__timeline-desc">days</p>
+      </div>
+      <div class="about_courses__timeline-item">
+        <h1 class="about_courses__timeline-num">04</h1>
+        <p class="about_courses__timeline-desc">hours</p>
+      </div>
+      <div class="about_courses__timeline-item">
+        <h1 class="about_courses__timeline-num">49</h1>
+        <p class="about_courses__timeline-desc">minutes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bought_courses">
+  <!-- <h3 class="bought_courses__header">Courses were bought</h3> -->
+  <ul class="bought_courses__list">
+    <h1 class="bought_courses-category">Purchased</h1>
+    {% for course_access in bought_courses %}
+    <li class="courses__item">
+      <div class="courses__item-maininfo">
+        <div>
+          <img
+            src="/static/images/afk_course.png"
+            alt="logo"
+            class="courses__item-img"
+          />
+        </div>
+        <div class="courses__item-info">
+          <h1 class="courses__item-header">
+            {{ course_access.course.course_name }}
+          </h1>
+          <p class="courses__item-desc">
+            {{ course_access.course.description }}
+          </p>
+          <div class="courses__item-navigation">
+            <a
+              href="{{ url_for('watch_course', course_id=course_access.course.id) }}"
+              class="courses__item-navigation__bought-course"
+              >Watch</a
+            >
+          </div>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+
+    <h1 class="bought_courses-category">Available offers</h1>
+    {% for course in all_courses %}
+    <li class="courses__item">
+      <div class="courses__item-maininfo">
+        <div>
+          <img
+            src="/static/images/afk_course.png"
+            alt="logo"
+            class="courses__item-img"
+          />
+        </div>
+        <div class="courses__item-info">
+          <h1 class="courses__item-header">{{ course.course_name }}</h1>
+          <p class="courses__item-desc">{{ course.description }}</p>
+          <div class="courses__item-navigation">
+            <a href="#" class="courses__item-link">
+              <img
+                src="/static/images/order_img.png"
+                alt="buy"
+                class="courses__item-link__img"
+              />
+            </a>
+            <a href="#" class="courses__item-link">
+              <p class="courses__item-more">MORE</p>
+              <div class="stick"></div>
+              <div class="stick"></div>
+              <div class="stick"></div>
+            </a>
+            <p class="courses__item-price">{{ course.price }}$</p>
+          </div>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock content %}
