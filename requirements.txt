@@ -8,3 +8,4 @@ Flask-WTF
 flask-mysqldb
 python-dotenv
 gunicorn
+pymysql
