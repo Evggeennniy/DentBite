@@ -3,7 +3,6 @@ from flask import Flask, render_template, redirect, url_for, request, flash, abo
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_admin import Admin, BaseView, expose
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, Column, Integer, String, Boolean, DateTime, ForeignKey
 from sqlalchemy.orm import relationship, sessionmaker
 from datetime import datetime, timedelta
@@ -15,16 +14,22 @@ from wtforms.fields import FileField
 from werkzeug.utils import secure_filename
 from flask_admin.form.upload import FileUploadField
 from flask_admin.form import BaseForm
+from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv
 import os
+
+load_dotenv()  # Загружает переменные окружения из файла .env
 
 """
 Configurations
 """
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 16800
+
 database = SQLAlchemy(app)
 login_manager = LoginManager(app)
 

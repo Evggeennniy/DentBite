@@ -7,8 +7,7 @@
         <img
           src="{{ url_for('static', filename='images/profile_img.png') }}"
           alt="user_img"
-          class="navigation__profile-img"
-        />
+          class="navigation__profile-img" />
         <h2 class="navigation__profile-fullname">{{ username }}</h2>
         <a href="{{ url_for('logout') }}" class="navigation__logout">LogOut</a>
       </div>
@@ -16,12 +15,11 @@
         <img
           src="{{ url_for('static', filename='images/support_img.png') }}"
           alt="contact_img"
-          class="navigation__contact-img"
-        />
+          class="navigation__contact-img" />
         <p class="navigation__contact-text">
           if you have any kind of questions<br />we will help you here
         </p>
-        <a href="#" class="navigation__contact-button">contacts</a>
+        <a class="navigation__contact-button contacts-link">contacts</a>
       </div>
     </section>
     <section class="navigation__side">
@@ -37,8 +35,7 @@
           <img
             class="navigation__progress-img"
             src="{{ url_for('static', filename='images/percents-stat.png') }}"
-            alt="statistics-img"
-          />
+            alt="statistics-img" />
           <h3 class="navigation__progress-percents">
             {{ bought_percentage }}%
           </h3>
@@ -59,8 +56,7 @@
                   id="nickname"
                   placeholder="Barbara Mingan"
                   value="{{ username }}"
-                  name="username"
-                />
+                  name="username" />
               </div>
               <div class="profile-field profile-item">
                 <label for="email">your email</label>
@@ -69,8 +65,7 @@
                   id="email"
                   placeholder="mybox@mail.com"
                   value="{{ mail }}"
-                  name="mail"
-                />
+                  name="mail" />
               </div>
             </div>
             <div class="navigation__mybio-info-side">
@@ -80,13 +75,11 @@
                   type="password"
                   id="password"
                   placeholder="Enter new password"
-                  name="password"
-                />
+                  name="password" />
               </div>
               <button
                 class="profile-button profile-field profile-save-btn"
-                type="submit"
-              >
+                type="submit">
                 Save
               </button>
               <!-- <a

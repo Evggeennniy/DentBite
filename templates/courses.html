@@ -7,8 +7,7 @@
         <img
           src="{{ url_for('static', filename='images/about_courses-img1.png') }}"
           alt="icon"
-          class="about_courses__img"
-        />
+          class="about_courses__img" />
       </div>
       <h3 class="about_courses__item-header-md">Сonstant updates</h3>
     </div>
@@ -20,8 +19,7 @@
         <img
           src="{{ url_for('static', filename='images/about_courses-img2.png') }}"
           alt="icon"
-          class="about_courses__img"
-        />
+          class="about_courses__img" />
       </div>
       <h3 class="about_courses__item-header-md">Help chat 24/7</h3>
     </div>
@@ -33,8 +31,7 @@
         <img
           src="{{ url_for('static', filename='images/about_courses-img3.png') }}"
           alt="icon"
-          class="about_courses__img"
-        />
+          class="about_courses__img" />
       </div>
       <h3 class="about_courses__item-header-md">Training</h3>
     </div>
@@ -75,8 +72,7 @@
           <img
             src="/static/images/afk_course.png"
             alt="logo"
-            class="courses__item-img"
-          />
+            class="courses__item-img" />
         </div>
         <div class="courses__item-info">
           <h1 class="courses__item-header">
@@ -88,9 +84,7 @@
           <div class="courses__item-navigation">
             <a
               href="{{ url_for('watch_course', course_id=course_access.course.id) }}"
-              class="courses__item-navigation__bought-course"
-              >Watch</a
-            >
+              class="courses__item-navigation__bought-course">Watch</a>
           </div>
         </div>
       </div>
@@ -105,21 +99,19 @@
           <img
             src="/static/images/afk_course.png"
             alt="logo"
-            class="courses__item-img"
-          />
+            class="courses__item-img" />
         </div>
         <div class="courses__item-info">
           <h1 class="courses__item-header">{{ course.course_name }}</h1>
           <p class="courses__item-desc">{{ course.description }}</p>
           <div class="courses__item-navigation">
-            <a href="#" class="courses__item-link">
+            <a class="courses__item-link contacts-link">
               <img
                 src="/static/images/order_img.png"
                 alt="buy"
-                class="courses__item-link__img"
-              />
+                class="courses__item-link__img" />
             </a>
-            <a href="#" class="courses__item-link">
+            <a class="courses__item-link">
               <p class="courses__item-more">MORE</p>
               <div class="stick"></div>
               <div class="stick"></div>

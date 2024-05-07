@@ -5,3 +5,6 @@ SQLAlchemy
 flask_sqlalchemy
 Flask-Login
 Flask-WTF
+flask-mysqldb
+python-dotenv
+gunicorn
