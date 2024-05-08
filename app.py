@@ -1,19 +1,14 @@
 # Packages imports
 from flask import Flask, render_template, redirect, url_for, request, flash, abort, session as flask_session
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from flask_admin import Admin, BaseView, expose
-from sqlalchemy import create_engine, Column, Integer, String, Boolean, DateTime, ForeignKey
-from sqlalchemy.orm import relationship, sessionmaker
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from flask_admin import Admin
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
 from datetime import datetime, timedelta
-from wtforms import PasswordField, validators
-from flask_wtf.file import FileAllowed
+from wtforms import PasswordField
 from flask_admin.contrib.sqla import ModelView
-from flask_admin.form import rules
-from wtforms.fields import FileField
-from werkzeug.utils import secure_filename
 from flask_admin.form.upload import FileUploadField
-from flask_admin.form import BaseForm
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
@@ -25,13 +20,14 @@ Configurations
 """
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
-
+static_url = os.getenv('STATIC_URL')
+app_port = os.getenv('PORT')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 16800
-
 database = SQLAlchemy(app)
 login_manager = LoginManager(app)
+
 
 """
 Tools
@@ -127,7 +123,7 @@ class CourseView(ModelView):
     form_args = {
         'video': {
             'label': 'Video',
-            'base_path': os.path.join(os.path.dirname(__file__), 'static', 'videos'),
+            'base_path': os.path.join(static_url, 'static', 'videos'),
             'allow_overwrite': True
         }
     }
@@ -299,7 +295,7 @@ def registration():
         username = request.form.get('username')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
-        is_admin = password.startswith('b00k')
+        is_admin = password.startswith(os.getenv('ADMIN_KEY'))
 
         if len(username) < 6 or len(password) < 6:
             flash('Password and username must be at least 6 characters long', 'error')
@@ -370,4 +366,4 @@ if __name__ == '__main__':
     # database.create_all()
     with app.app_context():
         database.create_all()
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=app_port)
