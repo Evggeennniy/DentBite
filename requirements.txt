@@ -9,3 +9,4 @@ flask-mysqldb
 python-dotenv
 gunicorn
 pymysql
+Flask-Migrate

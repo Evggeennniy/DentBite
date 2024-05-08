@@ -12,6 +12,7 @@ from flask_admin.form.upload import FileUploadField
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from upload_video import upload_file
+from flask_migrate import Migrate
 import os
 
 load_dotenv()  # Загружает переменные окружения из файла .env
@@ -27,6 +28,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 16800
 database = SQLAlchemy(app)
+migrate = Migrate(app, database)
 login_manager = LoginManager(app)
 
 
@@ -87,8 +89,8 @@ class Course(database.Model):
 class CourseAccess(database.Model):
     __tablename__ = 'course_access'
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
-    course_id = Column(Integer, ForeignKey('course.id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'), nullable=True)
+    course_id = Column(Integer, ForeignKey('course.id'), nullable=True)
     months = Column(Integer, nullable=False)
     start_date = Column(DateTime, nullable=False, default=datetime.now)
     end_date = Column(DateTime, nullable=False)
