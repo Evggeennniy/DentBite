@@ -10,21 +10,10 @@
       <div class="col-md-8">
         <video controls class="video-player">
           <source
-            src="{{ url_for('static', filename='videos/' + course.video) }}"
+            src="https://dentbitestaticfiles.nyc3.digitaloceanspaces.com/static/videos/{{ course.video }}"
             type="video/mp4" />
         </video>
       </div>
-      <!-- <div class="col-md-4">
-        <div class="course-details">
-          <h2>Description</h2>
-          <p>{{ course.description }}</p>
-          <h2>Details</h2>
-          <ul>
-            <li><strong>Price:</strong> ${{ course.price }}</li>
-            <li><strong>Duration:</strong> Approx. 120 minutes</li>
-          </ul>
-        </div>
-      </div> -->
     </div>
   </div>
 </section>

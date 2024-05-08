@@ -11,6 +11,7 @@ from flask_admin.contrib.sqla import ModelView
 from flask_admin.form.upload import FileUploadField
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
+from upload_video import upload_file
 import os
 
 load_dotenv()  # Загружает переменные окружения из файла .env
@@ -123,10 +124,15 @@ class CourseView(ModelView):
     form_args = {
         'video': {
             'label': 'Video',
-            'base_path': os.path.join(static_url, 'static', 'videos'),
+            'base_path': os.path.join('tmp'),
             'allow_overwrite': True
         }
     }
+    
+    def after_model_change(self, form, model, is_created):
+        filename = model.video
+        upload_file(filename)
+        return super().on_model_change(form, model, is_created)
 
 
 class CourseAccessView(ModelView):
