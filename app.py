@@ -162,7 +162,7 @@ class CourseAccessView(ModelView):
         return True
 
 
-admin = Admin(app, name='Admin Panel', template_mode='bootstrap4')
+admin = Admin(app, name='Admin Panel', template_mode='bootstrap4', base_template='admin/custom_adm_nav.html')
 admin.add_view(UserView(User, database.session))
 admin.add_view(CourseView(Course, database.session))
 admin.add_view(CourseAccessView(CourseAccess, database.session))
@@ -366,4 +366,4 @@ if __name__ == '__main__':
     # database.create_all()
     with app.app_context():
         database.create_all()
-    app.run(debug=False, port=app_port)
+    app.run(debug=True, port=app_port)
