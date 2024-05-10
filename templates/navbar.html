@@ -1,11 +1,9 @@
 <nav class="navbar">
   <div class="navbar__logotype">
-    <a href="/"
-      ><img
+    <a href="/"><img
         class="navbar__img"
-        src="{{ url_for('static', filename='images/logotype.png') }}"
-        alt="logotype"
-    /></a>
+        src="{{ url_for('static', filename='images/logotype_new.png') }}"
+        alt="logotype" /></a>
   </div>
   <div class="navbar__nav-links">
     {% if current_user.is_admin %}
@@ -14,22 +12,20 @@
     <a href="{{ url_for('profile') }}" class="navbar__link">Profile</a>
     <a
       href="{{ url_for('courses') }}"
-      class="navbar__link navbar__link-courses"
-    >
+      class="navbar__link navbar__link-courses">
       <p>Courses</p>
-    <a href="#" class="navbar__mobile-button">
-      <span class="stick"></span>
-      <span class="stick"></span>
-      <span class="stick"></span>
-    </a>
-    <div class="navbar__covered-menu">
-      <a href="{{ url_for('profile') }}" class="covered_link">Profile</a>
-      <a href="{{ url_for('courses') }}" class="covered_link">Courses</a>
-      {% if current_user.is_admin %}
-      <a href="{{ url_for('admin.index') }}" class="covered_link"
-        >Admin Panel</a
-      >
-      {% endif %}
+      <a href="#" class="navbar__mobile-button">
+        <span class="stick"></span>
+        <span class="stick"></span>
+        <span class="stick"></span>
+      </a>
+      <div class="navbar__covered-menu">
+        <a href="{{ url_for('profile') }}" class="covered_link">Profile</a>
+        <a href="{{ url_for('courses') }}" class="covered_link">Courses</a>
+        {% if current_user.is_admin %}
+        <a href="{{ url_for('admin.index') }}" class="covered_link">Admin
+          Panel</a>
+        {% endif %}
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
