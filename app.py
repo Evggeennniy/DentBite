@@ -250,6 +250,7 @@ def profile():
         user_id=current_user.id).count()
     bought_percentage = (bought_courses / total_courses *
                          100) if total_courses > 0 else 0
+    bought_percentage = round(bought_percentage, 2)
 
     return render_template(
         'profile.html',
@@ -261,23 +262,22 @@ def profile():
 
 
 @app.route('/courses')
-@app.route('/courses/<int:course_id>')
-def courses(course_id=None):
-    if not current_user.is_authenticated:
-        return redirect(url_for('login'))
+def courses():
+    bought_courses = None
 
-    if course_id:
-        course = Course.query.get_or_404(course_id)
-        return render_template('course_detail.html', course=course)
+    if current_user.is_authenticated:
+        bought_courses = CourseAccess.query.filter_by(user_id=current_user.id).all()
+        bought_course_ids = [access.course_id for access in bought_courses]
 
-    bought_courses = CourseAccess.query.filter_by(
-        user_id=current_user.id).all()
-    bought_course_ids = [access.course_id for access in bought_courses]
-
-    all_courses = Course.query.filter(Course.id.notin_(
-        bought_course_ids)).all() if bought_course_ids else Course.query.all()
+        if bought_course_ids:
+            all_courses = Course.query.filter(Course.id.notin_(bought_course_ids)).all()
+        else:
+            all_courses = Course.query.all()
+    else:
+        all_courses = Course.query.all()
 
     return render_template('courses.html', all_courses=all_courses, bought_courses=bought_courses)
+
 
 
 @app.route('/courses/<int:course_id>/watch')
@@ -285,8 +285,10 @@ def watch_course(course_id):
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
 
-    course_access = CourseAccess.query.filter_by(
-        user_id=current_user.id, course_id=course_id).first()
+    course_access = CourseAccess.query.filter(
+        CourseAccess.user_id == current_user.id,
+        CourseAccess.course_id == course_id
+    ).first()
     if not course_access or course_access.end_date < datetime.utcnow():
         abort(403)
     course = Course.query.get_or_404(course_id)
@@ -374,4 +376,4 @@ if __name__ == '__main__':
     # database.create_all()
     with app.app_context():
         database.create_all()
-    app.run(debug=False, port=app_port)
+    app.run(debug=True, port=app_port)

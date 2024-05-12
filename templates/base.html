@@ -9,7 +9,7 @@
       href="{{ url_for('static', filename='css/reset.css') }}" />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='css/styles.css') }}?v=1" />
+      href="{{ url_for('static', filename='css/styles.css') }}?v=1.1" />
     <script
       src="{{ url_for('static', filename='js/scripts.js') }}"
       defer></script>
@@ -19,6 +19,6 @@
     {% include 'navbar.html' %}
     {% block content %}
     {% endblock content %}
-    {% include 'footer.html' %}
+    <!-- {% include 'footer.html' %} -->
   </body>
 </html>

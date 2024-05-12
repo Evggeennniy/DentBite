@@ -62,8 +62,9 @@
 </section>
 
 <section class="bought_courses">
-  <!-- <h3 class="bought_courses__header">Courses were bought</h3> -->
+
   <ul class="bought_courses__list">
+    {% if bought_courses %}
     <h1 class="bought_courses-category">Purchased</h1>
     {% for course_access in bought_courses %}
     <li class="courses__item">
@@ -90,6 +91,7 @@
       </div>
     </li>
     {% endfor %}
+    {% endif %}
 
     <h1 class="bought_courses-category">Available offers</h1>
     {% for course in all_courses %}
