@@ -376,4 +376,4 @@ if __name__ == '__main__':
     # database.create_all()
     with app.app_context():
         database.create_all()
-    app.run(debug=True, port=app_port)
+    app.run(debug=False, port=app_port)
